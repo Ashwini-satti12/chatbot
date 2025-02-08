@@ -1,0 +1,26 @@
+CREATE DATABASE supplier_db;
+USE supplier_db;
+
+CREATE TABLE suppliers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    contact_info TEXT NOT NULL,
+    product_categories TEXT NOT NULL
+);
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    brand VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    description TEXT,
+    supplier_id INT,
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id)
+);
+
+INSERT INTO suppliers (name, contact_info, product_categories)
+VALUES ('Tech Distributors', 'tech@example.com, 8908765678', 'Laptops, Monitors');
+
+INSERT INTO products (name, brand, price, category, description, supplier_id)
+VALUES ('MacBook Pro', 'Apple', 1999.99, 'Laptop', 'High-end Apple laptop', 1);
